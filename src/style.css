@@ -1,0 +1,30 @@
+.Place-helper *
+{
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -o-transition: .4s;
+    transition: .4s;
+}
+
+.Place-helper
+{
+    width: 200px;
+    text-align: left;
+}
+
+.Place-helper ul
+{
+    list-style: none;
+    padding: 0;
+    border: 1px solid #000;
+}
+
+.Place-helper ul>li
+{
+    cursor: pointer;
+}
+
+.Place-helper ul>li:hover
+{
+    background-color: lightblue;
+}
