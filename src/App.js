@@ -7,14 +7,20 @@ import './App.css';
 class App extends React.Component{
 
 
+state={
+  x:''
+}
 
+check = (x)=>console.log(x);
   
   render()
   {
     return (
       <div className="App">
-        <input />
-        <StreetsHelper />
+        <StreetsHelper 
+        customInput={()=><input className='test'/>}
+        returnedDataList={this.check}
+        />
       </div>
     );
   }
