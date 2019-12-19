@@ -18,7 +18,7 @@ check = (x)=>console.log(x);
     return (
       <div className="App">
         <StreetsHelper 
-        customInput={()=><input className='test'/>}
+         
         returnedDataList={this.check}
         />
       </div>

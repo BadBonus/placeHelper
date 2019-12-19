@@ -11,17 +11,13 @@ class PlaceHelper extends React.Component {
         onLoad: false
     };
 
-    componentDidMount() 
-    { 
+    componentDidMount() {
     }
 
-    componentDidUpdate(oldProps, oldState) 
-    { 
-        const {returnedDataList}=this.props;
-        if(returnedDataList !== undefined)
-        {
-            if(this.state.findedData !== oldState.findedData)
-            {
+    componentDidUpdate(oldProps, oldState) {
+        const { returnedDataList } = this.props;
+        if (returnedDataList !== undefined) {
+            if (this.state.findedData !== oldState.findedData) {
                 returnedDataList(this.state.findedData);
             }
         }
@@ -38,40 +34,60 @@ class PlaceHelper extends React.Component {
     timer = 0;
 
     render() {
-       const {
-        customInput,
-        customDataList,
-        customLoader,
-        classNameCommon,
-        classNameInput,
-        classNameList,
-        filterOptions,
-        onChangeDelay,
-        listServerLimit,
-        listlocalLimit,
-        returnedDataInput,
-        ...other
+        const {
+            customInput,
+            customDataList,
+            customLoader,
+            classNameCommon,
+            classNameInput,
+            classNameList,
+            filterOptions,
+            onChangeDelay,
+            listServerLimit,
+            listlocalLimit,
+            returnedDataInput,
+            ...other
         } = this.props;
 
+        let UpdatedCustomInput = customInput !== undefined 
+        ? React.cloneElement(
+            this.props.customInput,
+            {
+                onChange: (e) => {
+                    let value = e.target.value;
+                    clearTimeout(this.timer);
+                    this.timer = setTimeout(this.takeData, this.props.onChangeDelay, value);
+                    this.setState({ inputAdress: value, onLoad: true });
+
+                    if (this.props.returnedDataInput !== undefined) this.props.returnedDataInput(e.target.value)
+                },
+                value: this.state.inputAdress //почему не апдейтится?
+            }
+        )
+        : null;
+
         const checkOfUndef = this.checkOfUndef;
+
         return (
             <div className={`Place-helper ${classNameCommon}`}>
 
                 {/* Как передать через кастомный атрибут-компонент и заполнить его внутри такими же атрибутами как у input ниже */}
-
-                <input
-                    list={`Place-helperList ${classNameInput}`}
+                {
+                    UpdatedCustomInput
+                }
+                {customInput===undefined&&<input
+                    className={`Place-helperList ${classNameInput}`}
                     value={this.state.inputAdress}
                     onChange={(e) => {
                         let value = e.target.value;
                         clearTimeout(this.timer);
                         this.timer = setTimeout(this.takeData, onChangeDelay, value);
                         this.setState({ inputAdress: value, onLoad: true });
-                        
-                        if(returnedDataInput !== undefined) returnedDataInput(e.target.value)
+
+                        if (returnedDataInput !== undefined) returnedDataInput(e.target.value)
                     }}
                     {...other}
-                />
+                />}
                 {
                     !this.state.choosen &&
                     <ul className={`${classNameList}`}>
@@ -113,7 +129,7 @@ PlaceHelper.propTypes = {
         country: PropTypes.bool,
         city: PropTypes.bool,
         streets: PropTypes.bool
-      }),
+    }),
     onChangeDelay: PropTypes.number, //задержка отправки введенных в input данных на сервер,
     listServerLimit: PropTypes.number, //лимит объектов с сервера
     listlocalLimit: PropTypes.number, //лимит объектов с сервера
@@ -127,7 +143,7 @@ PlaceHelper.defaultProps = {
         country: true,
         city: true,
         streets: true
-      }),
+    }),
     onChangeDelay: 800, //задержка отправки введенных в input данных на сервер,
     listServerLimit: 10, //лимит объектов с сервера
-  };
+};
