@@ -12,9 +12,6 @@ class PlaceHelper extends React.Component {
         writing: false,
         choosen: false,
         onLoad: false
-    };
-
-    componentDidMount() {
     }
 
     componentDidUpdate(oldProps, oldState) {
@@ -27,6 +24,8 @@ class PlaceHelper extends React.Component {
     }
 
     takeData = (address, limit) => {
+        const {country, city, streets} = this.props.filterOptions;
+
         fetch(`http://photon.komoot.de/api/?q=${address}&limit=${limit}`)
             .then((data) => data.json())
             .then(data => this.setState({ findedData: data.features, choosen: false, onLoad: false }));
@@ -43,10 +42,10 @@ class PlaceHelper extends React.Component {
             classNameCommon,
             classNameInput,
             classNameList,
-            filterOptions,
+            // filterOptions,
             listServerLimit,
             onChangeDelay,
-            listlocalLimit,
+            // listlocalLimit,
             returnedDataInput,
             optionsForInput,
             optionsForContainer,
@@ -67,7 +66,7 @@ class PlaceHelper extends React.Component {
                         onChange={(e) => {
                             let value = e.target.value;
                             clearTimeout(this.timer);
-
+                            
                             if(value !== '')   
                             {
                                 this.timer = setTimeout(()=>{
@@ -91,7 +90,7 @@ class PlaceHelper extends React.Component {
                         this.state.onLoad && <>{customLoader !== undefined ?customLoader:<div className="loader"></div>}</>
                     }
                     {
-                        this.state.writing && <img className='iconWriting' src={iconWriting}/>
+                        this.state.writing && <img className='iconWriting' src={iconWriting} alt='iconOfWritting'/>
                     }
                 </div>
                 {
@@ -101,7 +100,6 @@ class PlaceHelper extends React.Component {
                             this.state.findedData.map((el) => {
                                 const {coordinates}=el.geometry;
                                 const { country, state, city, street, name } = el.properties;
-                                console.log(coordinates);
                                 const fullData = `${checkOfUndef(country)} ${checkOfUndef(state)} ${checkOfUndef(city)} ${checkOfUndef(street)} ${checkOfUndef(name)}`;
                                 return (
                                     <li onClick={() => { this.setState({ inputAdress: fullData, choosen: true }) }} key={coordinates.slice()}>
@@ -129,14 +127,14 @@ PlaceHelper.propTypes = {
     classNameCommon: PropTypes.string, //css-класс для всего компонента
     classNameInput: PropTypes.string, //css-класс для стандартного input
     classNameList: PropTypes.string, //css-класс для стандартного list
-    filterOptions: PropTypes.shape({ //опции фильтра для вывода конкретного типа элементов
-        country: PropTypes.bool,
-        city: PropTypes.bool,
-        streets: PropTypes.bool
-    }),
+    // filterOptions: PropTypes.shape({ //опции фильтра для вывода конкретного типа элементов
+    //     country: PropTypes.bool,
+    //     city: PropTypes.bool,
+    //     streets: PropTypes.bool
+    // }),
     onChangeDelay: PropTypes.number, //задержка отправки введенных в input данных на сервер,
     listServerLimit: PropTypes.number, //лимит объектов с сервера
-    listlocalLimit: PropTypes.number, //лимит объектов с сервера
+    // listlocalLimit: PropTypes.number, //лимит объектов с сервера
     optionsForInput:PropTypes.object, //любые опции для input
     optionsForContainer:PropTypes.object, //любые опции для контейнера-div
     optionsForList:PropTypes.object, //любые опции для списка выводимых объектов
@@ -146,11 +144,11 @@ PlaceHelper.defaultProps = {
     classNameCommon: '',
     classNameInput: '',
     classNameList: '',
-    filterOptions: PropTypes.shape({ //опции фильтра для вывода конкретного типа элементов
-        country: true,
-        city: true,
-        streets: true
-    }),
+    // filterOptions:{
+    //     country: true,
+    //     city: true,
+    //     streets: true
+    // },
     onChangeDelay: 800, //задержка отправки введенных в input данных на сервер,
     listServerLimit: 10, //лимит объектов с сервера
 };
