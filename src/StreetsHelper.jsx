@@ -99,10 +99,12 @@ class PlaceHelper extends React.Component {
                     <ul className={`${classNameList}`} {...optionsForList}>
                         {
                             this.state.findedData.map((el) => {
-                                const { country, state, city, street, name, osm_id } = el.properties;
+                                const {coordinates}=el.geometry;
+                                const { country, state, city, street, name } = el.properties;
+                                console.log(coordinates);
                                 const fullData = `${checkOfUndef(country)} ${checkOfUndef(state)} ${checkOfUndef(city)} ${checkOfUndef(street)} ${checkOfUndef(name)}`;
                                 return (
-                                    <li onClick={() => { this.setState({ inputAdress: fullData, choosen: true }) }} key={osm_id}>
+                                    <li onClick={() => { this.setState({ inputAdress: fullData, choosen: true }) }} key={coordinates.slice()}>
                                         {
                                             fullData
                                         }
