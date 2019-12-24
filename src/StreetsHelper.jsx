@@ -68,14 +68,22 @@ class PlaceHelper extends React.Component {
                             let value = e.target.value;
                             clearTimeout(this.timer);
 
-                            this.timer = setTimeout(()=>{
-                                this.setState({writing:false, onLoad:true, findedData: []});
-                                this.takeData(value, listServerLimit);
-                            },onChangeDelay);
+                            if(value !== '')   
+                            {
+                                this.timer = setTimeout(()=>{
+                                    this.setState({writing:false, onLoad:true, findedData: []});
+                                    this.takeData(value, listServerLimit);
+                                },onChangeDelay);
 
-                            // this.setState({ inputAdress: value, onLoad: true });
-                            this.setState({ inputAdress: value, writing:true});
-                            if (returnedDataInput !== undefined) returnedDataInput(e.target.value)
+                                this.setState({ inputAdress: value, writing:true});
+                                if (returnedDataInput !== undefined) returnedDataInput(e.target.value)
+                            }
+                            else //если пользователь очистил поле ввода
+                            {
+                                this.setState({writing:false, onLoad:false, findedData: [], inputAdress:value});
+                            }
+
+                          
                         }}
                         {...optionsForInput}
                     />
