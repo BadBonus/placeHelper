@@ -1,8 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 
 import StreetsHelper from './StreetsHelper'
-import './App.css';
 
 class App extends React.Component{
 
@@ -17,10 +15,7 @@ check = (x)=>console.log(x);
   {
     return (
       <div className="App">
-        <StreetsHelper 
-         
-        returnedDataList={this.check}
-        />
+        <StreetsHelper />
       </div>
     );
   }

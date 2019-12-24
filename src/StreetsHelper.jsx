@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import iconWriting from './pencil.svg'
 import './style.css'
 
 class PlaceHelper extends React.Component {
@@ -7,6 +9,7 @@ class PlaceHelper extends React.Component {
     state = {
         inputAdress: '',
         findedData: [],
+        writing: false,
         choosen: false,
         onLoad: false
     };
@@ -23,8 +26,8 @@ class PlaceHelper extends React.Component {
         }
     }
 
-    takeData = (address) => {
-        fetch(`http://photon.komoot.de/api/?q=${address}&limit=10`)
+    takeData = (address, limit) => {
+        fetch(`http://photon.komoot.de/api/?q=${address}&limit=${limit}`)
             .then((data) => data.json())
             .then(data => this.setState({ findedData: data.features, choosen: false, onLoad: false }));
     }
@@ -35,62 +38,57 @@ class PlaceHelper extends React.Component {
 
     render() {
         const {
-            customInput,
-            customDataList,
+            // customDataList,
             customLoader,
             classNameCommon,
             classNameInput,
             classNameList,
             filterOptions,
-            onChangeDelay,
             listServerLimit,
+            onChangeDelay,
             listlocalLimit,
             returnedDataInput,
-            ...other
+            optionsForInput,
+            optionsForContainer,
+            optionsForList
         } = this.props;
 
-        let UpdatedCustomInput = customInput !== undefined 
-        ? React.cloneElement(
-            this.props.customInput,
-            {
-                onChange: (e) => {
-                    let value = e.target.value;
-                    clearTimeout(this.timer);
-                    this.timer = setTimeout(this.takeData, this.props.onChangeDelay, value);
-                    this.setState({ inputAdress: value, onLoad: true });
-
-                    if (this.props.returnedDataInput !== undefined) this.props.returnedDataInput(e.target.value)
-                },
-                value: this.state.inputAdress //почему не апдейтится?
-            }
-        )
-        : null;
+      
 
         const checkOfUndef = this.checkOfUndef;
 
         return (
-            <div className={`Place-helper ${classNameCommon}`}>
+            <div className={`Place-helper ${classNameCommon}`} {...optionsForContainer}>
 
-                {/* Как передать через кастомный атрибут-компонент и заполнить его внутри такими же атрибутами как у input ниже */}
-                {
-                    UpdatedCustomInput
-                }
-                {customInput===undefined&&<input
-                    className={`Place-helperList ${classNameInput}`}
-                    value={this.state.inputAdress}
-                    onChange={(e) => {
-                        let value = e.target.value;
-                        clearTimeout(this.timer);
-                        this.timer = setTimeout(this.takeData, onChangeDelay, value);
-                        this.setState({ inputAdress: value, onLoad: true });
+                <div className={'wrapperForInputAndLoader'}>
+                    <input
+                        className={`Place-helperInput ${classNameInput}`}
+                        value={this.state.inputAdress}
+                        onChange={(e) => {
+                            let value = e.target.value;
+                            clearTimeout(this.timer);
 
-                        if (returnedDataInput !== undefined) returnedDataInput(e.target.value)
-                    }}
-                    {...other}
-                />}
+                            this.timer = setTimeout(()=>{
+                                this.setState({writing:false, onLoad:true, findedData: []});
+                                this.takeData(value, listServerLimit);
+                            },onChangeDelay);
+
+                            // this.setState({ inputAdress: value, onLoad: true });
+                            this.setState({ inputAdress: value, writing:true});
+                            if (returnedDataInput !== undefined) returnedDataInput(e.target.value)
+                        }}
+                        {...optionsForInput}
+                    />
+                    {
+                        this.state.onLoad && <>{customLoader !== undefined ?customLoader:<div className="loader"></div>}</>
+                    }
+                    {
+                        this.state.writing && <img className='iconWriting' src={iconWriting}/>
+                    }
+                </div>
                 {
-                    !this.state.choosen &&
-                    <ul className={`${classNameList}`}>
+                    (!this.state.choosen && this.state.findedData.length !== 0) &&
+                    <ul className={`${classNameList}`} {...optionsForList}>
                         {
                             this.state.findedData.map((el) => {
                                 const { country, state, city, street, name, osm_id } = el.properties;
@@ -106,9 +104,6 @@ class PlaceHelper extends React.Component {
                         }
                     </ul>
                 }
-                {
-                    this.state.onLoad && <span>Loading...</span>
-                }
             </div>
         );
     }
@@ -117,8 +112,7 @@ class PlaceHelper extends React.Component {
 export default PlaceHelper;
 
 PlaceHelper.propTypes = {
-    customInput: PropTypes.element, //пользовательский input
-    customDataList: PropTypes.element, //пользовательский список вывода данных
+    // customDataList: PropTypes.element, //пользовательский список вывода данных
     customLoader: PropTypes.element, //пользовательский loader
     returnedDataList: PropTypes.func, //функция что будет принимать данные с сервера
     returnedDataInput: PropTypes.func, //функция что будет принимать value input
@@ -133,6 +127,9 @@ PlaceHelper.propTypes = {
     onChangeDelay: PropTypes.number, //задержка отправки введенных в input данных на сервер,
     listServerLimit: PropTypes.number, //лимит объектов с сервера
     listlocalLimit: PropTypes.number, //лимит объектов с сервера
+    optionsForInput:PropTypes.object, //любые опции для input
+    optionsForContainer:PropTypes.object, //любые опции для контейнера-div
+    optionsForList:PropTypes.object, //любые опции для списка выводимых объектов
 };
 
 PlaceHelper.defaultProps = {

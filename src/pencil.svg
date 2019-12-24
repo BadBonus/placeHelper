@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    id="svg3336"
+    sodipodi:docname="pinceau.svg"
+    viewBox="0 0 50 50"
+    version="1.1"
+    inkscape:version="0.47pre4 r22446"
+  >
+  <title
+      id="title3408"
+    >personnage</title
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      inkscape:pageshadow="2"
+      inkscape:window-y="45"
+      pagecolor="#ffffff"
+      inkscape:window-height="639"
+      inkscape:window-maximized="0"
+      inkscape:zoom="1.4"
+      inkscape:window-x="0"
+      showgrid="false"
+      borderopacity="1.0"
+      inkscape:current-layer="layer1"
+      inkscape:cx="79.328277"
+      inkscape:cy="71.348638"
+      inkscape:window-width="1261"
+      inkscape:pageopacity="0.0"
+      inkscape:document-units="px"
+  />
+  <g
+      id="layer1"
+      inkscape:label="Calque 1"
+      inkscape:groupmode="layer"
+      transform="translate(0 -1002.4)"
+    >
+    <g
+        id="g4898-0"
+        style="enable-background:new;stroke:#000000;stroke-width:3.5433"
+        transform="matrix(.46832 .45538 -.45538 .46832 -332.97 889.09)"
+      >
+      <g
+          id="g5013-7"
+          transform="matrix(.86262 0 0 .86262 24.917 35.065)"
+        >
+        <g
+            id="g4916-0"
+            style="enable-background:new;stroke:#000000;stroke-width:3.5433"
+            transform="matrix(.57258 .57258 -.57258 .57258 512.57 -470.99)"
+          >
+          <path
+              id="path4900-7"
+              style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:3.5433;fill:#ffffff"
+              d="m182.68 38.875c-1.5158 1.4757-1.5479 3.8754-0.0723 5.3912l47.28 48.567 12.04-11.727-47.28-48.567c-1.4756-1.5158-3.8754-1.5479-5.3912-0.07229l-6.5831 6.4089z"
+          />
+          <g
+              id="g4902-13"
+              inkscape:transform-center-x="-13.796012"
+              inkscape:transform-center-y="7.8507742"
+              style="stroke:#000000;stroke-width:3.5433"
+              transform="matrix(.71569 -.70087 .82524 .79112 4.7465 159.3)"
+            >
+            <path
+                id="path4904-3"
+                sodipodi:nodetypes="ccccccc"
+                style="stroke-linejoin:round;fill-rule:evenodd;stroke:#000000;stroke-linecap:round;stroke-width:3.5433;fill:#ffffff"
+                d="m220.08 96.514-4.1279-3.843-4.0852 3.843-3.9464-3.9961-4.2666 3.9961c3.311 9.2202 8.3407 23.235 8.3407 23.235l8.0854-23.235z"
+            />
+          </g
+          >
+          <path
+              id="path4912-7"
+              style="stroke:#000000;stroke-width:3.5433;fill:none"
+              d="m234.92 86.204-48.972-50.363"
+          />
+          <path
+              id="path4914-6"
+              style="fill-rule:evenodd;fill:#020202"
+              transform="matrix(.71694 -.69713 .69713 .71694 -404.85 90.286)"
+              d="m458.19 457.84h7.5516l-2.8099 9.4834-4.7417-9.4834z"
+          />
+        </g
+        >
+      </g
+      >
+    </g
+    >
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >Crayon</dc:title
+        >
+        <dc:date
+          >2010-04-04T14:15:46</dc:date
+        >
+        <dc:description
+          >Crayon pencils </dc:description
+        >
+        <dc:source
+          >https://openclipart.org/detail/37003/crayon-by-antoine</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >Antoine</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >Crayon pencils</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>
